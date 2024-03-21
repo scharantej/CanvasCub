@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Drawing for Children</title>
+</head>
+<body>
+<h1>Drawing for Children</h1>
+<p>Let's draw together!</p>
+<p>Here is a drawing area. Use your mouse or finger to draw.</p>
+
+<!-- Drawing area -->
+<canvas id="drawing-area" width="600" height="400" style="border: 1px solid black;"></canvas>
+
+<br>
+
+<!-- Submit button -->
+<button type="button" onclick="submitDrawing()">Submit</button>
+
+<script>
+function submitDrawing() {
+// Get the drawing area
+var canvas = document.getElementById('drawing-area');
+
+// Get the drawing as an image
+var image = canvas.toDataURL();
+
+// Send the image to the server
+var request = new XMLHttpRequest();
+request.open('POST', '/submit_drawing', true);
+request.setRequestHeader('Content-Type', 'application/octet-stream');
+request.send(image);
+
+// Redirect to the gallery page
+window.location.href = '/gallery';
+}
+</script>
+</body>
+</html>
+
+---
